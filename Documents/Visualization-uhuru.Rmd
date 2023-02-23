@@ -1,0 +1,36 @@
+---
+title: "UHURU Data Set Visualization"
+author: "Austin Mercado"
+date: "2023-02-23"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## A tip for working with Rmarkdown
+The Working directory inside this Rmarkdown r chunk is the following: 
+```{r eval=TRUE}
+getwd()
+```
+
+Note: remember that working directories in a project and an R chunk are not always the same!
+
+## Describing the working data set
+
+UHURU data set
+
+## Reading the data set
+```{r}
+read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t")
+```
+
+Assign the data to a variable so we can work we can work with it
+```{r}
+ACACIA <- read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t")
+```
+
+## 3. Quality Control Check
+
+
