@@ -1,0 +1,18 @@
+---
+title: "My Data Life Cycle"
+author: "Austin Mercado"
+date: "2023-02-23"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Plan: To create a gameplan/web out a goal toward an idea.
+2. Collection: Collect Data that either support or do not support the goal. 
+3. Processing: Comense further tests and estimations of those datas.
+5. Visual: Create visualations to further and easily spread mainstream across to others. 
+6. Storing: Saving the collection/processed data/visuals for safe keeping.
+7. Sharing: Release one's finding others
+8. Analysing: Supporting peers determine whether one's finding is approvalabe/acceptable/reasonable. 
