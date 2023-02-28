@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## A tip for working with Rmarkdown
+## 1. A tip for working with Rmarkdown
 The Working directory inside this Rmarkdown r chunk is the following: 
 ```{r eval=TRUE}
 getwd()
@@ -17,11 +17,12 @@ getwd()
 
 Note: remember that working directories in a project and an R chunk are not always the same!
 
-## Describing the working data set
+## 2. Describing the working data set
 
 UHURU data set
+![](https://cdn.britannica.com/62/156362-050-4E8FE282/Acacia-tree-savanna-Zimbabwe.jpg)
 
-## Reading the data set
+## 3. Reading the data set
 ```{r}
 read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t")
 ```
@@ -31,6 +32,76 @@ Assign the data to a variable so we can work we can work with it
 ACACIA <- read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t")
 ```
 
-## 3. Quality Control Check
+## 4. Quality Control Check
 
+```{r}
+head(ACACIA)
+str(ACACIA)
+ACACIA
+numbers <- 1:10
+numbers
+numbers[3:6]
+numbers[c(1,5,6,3)]
+```
+
+
+```{r}
+class(ACACIA$HEIGHT)
+is.numeric(ACACIA$HEIGHT)
+ACACIA$HEIGHT
+as.numeric(ACACIA$HEIGHT)
+```
+We identified that HEIGHT should be numeric and is instead character:
+```{r}
+ACACIA$HEIGHT <- as.numeric(ACACIA$HEIGHT)
+ACACIA$HEIGHT
+```
+
+Coercion in R computer language means that a value was forced to be type, in this case, the word "Dead" cannot be transformed to a number, so it is assigned the NA value
+```{r}
+ACACIA <- read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t", na.strings = "dead")
+is.numeric(ACACIA$HEIGHT)
+```
+
+### 5. Accessing elements of a 'data.frame'
+
+It is similar to what we do for vectors, but we have two dimensions 
+
+```{r}
+ACACIA[1,6]
+str(ACACIA)
+```
+
+All the following are different ways of accessing a column or variable inside a data frame 
+```{r}
+ACACIA$SURVEY
+ACACIA[,1]
+ACACIA[,"SURVEY"]
+```
+
+### 6. Replacing elements in a data frame
+
+```{r}
+numbers[5] <- 100
+numbers
+```
+
+## 7. Plotting data with 'ggplot2'
+```{r}
+plot(x = ACACIA$HEIGHT, y = ACACIA$AXIS1, main = "Acacia height vs Axis1")
+?legend
+legend(x = 1, y = 5, legend = "Acacia trees" )
+```
+
+With ggplot, we create layers
+```{r}
+library(ggplot2)
+
+ggplot(data = ACACIA, mapping = aes(x = HEIGHT, y = AXIS1, color = TREATMENT)) + geom_point(size = 1 ) + labs(x = "Tree Height", y = "Tree Axis 1", title = "Acacia trees size relationships")
+```
+
+```{r}
+colors()
+View(ACACIA)
+```
 
