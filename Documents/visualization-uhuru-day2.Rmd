@@ -94,3 +94,22 @@ ggsave("acacia_by_treatment.jpg")
 ```{r}
 ggsave("acacia_by_treatment.pdf", height = 5, width = 5)
 ```
+
+We are working with the file 'ACACIA_DREPANOLOBIUM_SURVEY.txt' file that currently lives in the 'data-raw' folder.
+
+```{r}
+#make sure to provude file name as relative path
+read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t", na.strings = "dead") -> ACACIA2
+```
+
+```{r}
+head(ACACIA2)
+```
+
+##Plot the data as a scatterplot
+
+For this we use the function 'geom_point()'
+```{r}
+library(ggplot2)
+ggplot(data = ACACIA2, mapping = aes(x = HEIGHT, y = FRUITS, color = ANT)) + geom_point(size = 3, alpha = 0.5) + facet_wrap(~ANT)
+```
