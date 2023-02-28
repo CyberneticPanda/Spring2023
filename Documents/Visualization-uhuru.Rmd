@@ -19,9 +19,6 @@ Note: remember that working directories in a project and an R chunk are not alwa
 
 ## 2. Describing the working data set
 
-UHURU data set
-![](https://cdn.britannica.com/62/156362-050-4E8FE282/Acacia-tree-savanna-Zimbabwe.jpg)
-
 ## 3. Reading the data set
 ```{r}
 read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t")
@@ -104,4 +101,22 @@ ggplot(data = ACACIA, mapping = aes(x = HEIGHT, y = AXIS1, color = TREATMENT)) +
 colors()
 View(ACACIA)
 ```
+
+#####
+Introductory section
+#####
+1. The goal of the experiment is to better understand how the interacting species corespond with and without one another in subsections of the areas the scientists have design to better understand the effect of one another(treatment).
+
+2. (Images issue with pdf)
+
+3. The variables that were measured were annual woody-plant censuses within the central 0.36 ha of each plot, annual and semi-annual monitoring of individually marked woody plants, small-mammal capture-mark-recapture sessions conducted eveyr other month in total-exclusion and open plots, daily rainfall monitoring throughout the course of the experiment and quarterly large-mammal dung surveys. 
+
+4. (Graph maps aboved)
+
+5. The influence resulted in varies of results that ranged from a wide range and some condensed within a interval of area; stunting it growth or decay. 
+
+6. Those that remain in the open plots were stunted to a very low result, though on the graph it displays only one case of info, questioning on whether the others were invalid to report or were much lower to report. 
+
+7. 
+
 
