@@ -1,0 +1,27 @@
+---
+title: "Pipes"
+author: "Austin Mercado"
+date: "2023-03-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("dplyr")
+library(magrittr)
+```
+
+```{r}
+read.csv("../data-raw/surveys.csv") %>% # Read the data set
+  select(year, month, day, species_id, weight) -> surveys1_pipe # select colums and assign to object
+
+#name_object <- ode that we want to run
+```
+
+
+```{r}
+surveys %>% select(year, species_id, weight) %>% mutate(weight_kg = weight/1000) %>% filter(!is.na(weight)) %>%
+select(year, species_id, weight_kg) %>%
+filter(species_id == "SH") -> surveys_final
+str(surveys_final)
+```
