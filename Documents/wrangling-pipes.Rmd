@@ -9,6 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 library("dplyr")
 library(magrittr)
+surveys <- read.csv("../data-raw/surveys.csv")
 ```
 
 ```{r}
