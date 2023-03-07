@@ -57,11 +57,6 @@ geom_histogram(fill = "red")
 ```
 
 ```{r}
-ggplot(ACACIA, aes(x = CIRC)) +
-geom_histogram(fill = "red")
-```
-
-```{r}
 ggplot(ACACIA, aes(x = CIRC, fill = TREATMENT)) +
 geom_histogram(bins = 20, color = "gray")
 ```
@@ -108,8 +103,22 @@ head(ACACIA2)
 
 ##Plot the data as a scatterplot
 
-For this we use the function 'geom_point()'
+For this we use this function 'geom_point()'
 ```{r}
 library(ggplot2)
 ggplot(data = ACACIA2, mapping = aes(x = HEIGHT, y = FRUITS, color = ANT)) + geom_point(size = 3, alpha = 0.5) + facet_wrap(~ANT)
+```
+
+```{r}
+ggplot(data = ACACIA2, mapping = aes(x = CIRC, y = AXIS1, color = ANT)) + geom_point(size = 3, alpha = 0.5) + facet_wrap(~ANT) +
+scale_y_log10() +
+scale_x_log10() + labs(x = "Circumference", y = "Canopy Diameter", title = "Circumference x Canopy x Ant") + geom_smooth()
+```
+
+```{r}
+ggplot(ACACIA, aes(x = ANT))
+```
+
+```{r}
+
 ```

@@ -1,0 +1,66 @@
+---
+title: 'Acacia vs Tree: Homework'
+author: "Austin Mercado"
+date: "2023-03-02"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+#Alternatively, we can force variables to be assigned a specific typw ehn we read them:
+```{r}
+trees <- read_tsv("../data-raw/TREE_SURVEYS.txt",
+               col_types = list(HEIGHT = col_double(),
+                                AXIS_2 = col_double()))
+```
+
+```{r}
+canopy_area <- trees$AXIS_1*trees$AXIS_2
+print(canopy_area)
+```
+
+```{r}
+trees$canopy_area <- canopy_area
+print(trees)
+```
+
+```{r}
+trees2 <- data.frame(SURVEY = trees$SURVEY,
+                     YEAR = trees$YEAR,
+                     SITE = trees$SITE,
+                     Canopy_Area = trees$canopy_area)
+```
+
+```{r}
+ggplot(data = trees, mapping = aes(x = canopy_area, y = HEIGHT, color = TREATMENT)) + geom_point(size = 2, alpha = 0.5) + facet_wrap(~SPECIES) + labs(x = "Canopy Area(m)", y = "Height(m)")
+```
+
+```{r}
+FixedTree <- subset(trees, canopy_area <= 400)
+```
+
+```{r}
+ggplot(data = FixedTree, mapping = aes(x = canopy_area, y = HEIGHT, color = TREATMENT)) + geom_point(size = 3, alpha = 0.5) + facet_wrap(~SPECIES)
+```
+
+```{r}
+library(ggplot2)
+FYM <- read.csv(file = "../data-raw/ACACIA_DREPANOLOBIUM_SURVEY.txt", sep = "\t", na.strings = "dead")
+ggplot() +
+  geom_point(data = trees, mapping = aes(x = CIRC, y = HEIGHT), size = 3, alpha = 0.5, color = "gray") +
+  labs(x = "Circumference", y = "Height") +
+  scale_x_log10() +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  geom_line() +
+  geom_point(data = FYM, mapping = aes(x = CIRC, y = HEIGHT, color = "red")) +
+  scale_x_log10() +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  geom_line()
+```
