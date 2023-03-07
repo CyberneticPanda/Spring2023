@@ -13,7 +13,7 @@ library(magrittr)
 
 ```{r}
 read.csv("../data-raw/surveys.csv") %>% # Read the data set
-  select(year, month, day, species_id, weight) -> surveys1_pipe # select colums and assign to object
+  select(year, month, day, species_id, weight) -> surveys1_pipe # select columns and assign to object
 
 #name_object <- ode that we want to run
 ```
