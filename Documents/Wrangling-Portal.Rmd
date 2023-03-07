@@ -1,0 +1,16 @@
+---
+title: "wrangling-portal"
+author: "Austin Mercado"
+date: "2023-03-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+surveys <- read.csv("../data-raw/surveys.csv")
+species <- read.csv("../data-raw/species.csv")
+plots <- read.csv("../data-raw/plots.csv")
+```
