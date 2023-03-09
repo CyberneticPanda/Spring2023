@@ -64,6 +64,6 @@ ggplot() + geom_point(data = trees, mapping = aes(x = CIRC, y = HEIGHT), color =
 geom_point(data = ACACIA, mapping = aes(x = CIRC, y = HEIGHT), color = "red", alpha = 0.8) +
 scale_x_log10() +
 scale_x_log10() +
-geom_smooth(data = trees, mapping = aes(x = CIRC, y= HEIGHT), method = "glm") + 
-geom_smooth(data = ACACIA, mapping = aes(x = CIRC, y = HEIGHT), method = "glm")
+geom_smooth(data = trees, mapping = aes(x = CIRC, y= HEIGHT), color = "black", method = "glm") + 
+geom_smooth(data = ACACIA, mapping = aes(x = CIRC, y = HEIGHT), color = "black", method = "glm")
 ```
