@@ -1,0 +1,28 @@
+---
+title: "Shrub_Volume"
+author: "Austin Mercado"
+date: "2023-03-14"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+## R Markdown
+
+```{r}
+read.csv("../data-raw/shrub-volume-data.csv") -> shrub_data
+```
+
+```{r}
+shrub_data %>% mutate(volume = length * width * height) %>% group_by(site) |>  summarize(mean_volume = mean(volume))
+##The data is creating a volume column, grouping by site, and summarizing the overall mean volume of each site
+```
+
+```{r}
+shrub_data |> mutate(volume = length * width * height) %>% group_by(experiment) |>
+summarize(mean_volume = mean(volume))
+##The data is creating a volume column, grouping by experiment, and summarizing the overall mean volume of each experiment
+```
