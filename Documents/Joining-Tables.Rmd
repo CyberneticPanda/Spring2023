@@ -1,0 +1,93 @@
+---
+title: "Joining Data Tables"
+author: "Austin Mercado"
+date: "2023-03-14"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+## R Markdown
+
+```{r}
+read.csv("../data-raw/plots.csv") -> plots 
+read.csv("../data-raw/species.csv") -> species
+read.csv("../data-raw/surveys.csv") -> surveys
+```
+
+```{r}
+inner_join(surveys, species, by = "species_id")
+```
+
+```{r}
+surveys |> inner_join(species, by = "species_id") -> joined_table
+```
+
+```{r}
+head(species)
+head(surveys)
+head(joined_table)
+```
+
+```{r}
+str(species)
+str(surveys)
+str(joined_table)
+```
+
+```{r}
+surveys %>% inner_join(plots, by = "plot_id") %>% filter(plot_type == "Control")
+```
+
+```{r}
+intersect(surveys$species_id, species$species_id)
+```
+
+```{r}
+colnames(surveys)
+```
+
+```{r}
+colnames(species)
+```
+
+```{r}
+intersect(colnames(plots),
+colnames(surveys))
+```
+
+```{r}
+intersect(colnames(plots),
+colnames(surveys))
+```
+
+```{r}
+surveys %>% inner_join(plots, by = "plot_id") %>% filter(plot_type == "Rodent Exclosure")
+```
+
+## Other join functions
+'left_join' retains all values from the first table, drops unmathching from second
+
+'right_join' drops values from the first table and retaining all values from second
+
+'full_join' keeps all values from both tables
+
+## Joining multiple data tables
+
+Can we use the '_join()' function on 3 or more tables at the same time?
+
+No. It does tno recognize more than two tables at a time.
+
+So we use a pipe and call the join function two or more times (as needed):
+
+```{r}
+inner_join(surveys, species, by = "species_id") %>% inner_join(plots, by = "plot_id") %>% str()
+```
+
+```{r}
+inner_join(surveys, species, by = "species_id") %>% inner_join(plots, by = "plot_id") %>% filter(taxa == "Rodent") %>% select(year, genus, species, weight, plot_type) %>% filter(plot_type == "Control" | plot_type == "Long term Krat Exclosure") %>% filter(!is.na(weight))
+```
+
