@@ -12,30 +12,33 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ```{r}
-convert_pounds_to_grams <- function(grams)
+convert_pounds_to_grams <- function(pounds = 1)
 {grams <- 453.6 * pounds
 return(grams)}
 ```
 
 ```{r}
-pounds = 3.75
-convert_pounds_to_grams()
+convert_pounds_to_grams(pound = 10)
 ```
 
 ```{r}
-get_mass_from_length_theropoda <- function(mass)
+get_mass_from_length_theropoda <- function(length, a, b)
 {mass <- a * length ^ b
 return(mass)}
 ```
 
-```{r}
+#Error
+get_mass_from_length_theropoda <- function(mass)
+{mass <- a * length ^ b
+return(mass)}
+
+#Error
 a = 214.44
 b = 1.46
 length <- 26
 get_mass_from_length_theropoda()
-```
 
-```{r}
-
+```{r} 
+get_mass_from_length_theropoda(length = 26, a =214.44, b = 1.46)
 ```
 
