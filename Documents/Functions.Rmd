@@ -1,0 +1,41 @@
+---
+title: "Functions"
+author: "Austin Mercado"
+date: "2023-03-21"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+convert_pounds_to_grams <- function(grams)
+{grams <- 453.6 * pounds
+return(grams)}
+```
+
+```{r}
+pounds = 3.75
+convert_pounds_to_grams()
+```
+
+```{r}
+get_mass_from_length_theropoda <- function(mass)
+{mass <- a * length ^ b
+return(mass)}
+```
+
+```{r}
+a = 214.44
+b = 1.46
+length <- 26
+get_mass_from_length_theropoda()
+```
+
+```{r}
+
+```
+
