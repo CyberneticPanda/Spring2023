@@ -91,3 +91,6 @@ inner_join(surveys, species, by = "species_id") %>% inner_join(plots, by = "plot
 inner_join(surveys, species, by = "species_id") %>% inner_join(plots, by = "plot_id") %>% filter(taxa == "Rodent") %>% select(year, genus, species, weight, plot_type) %>% filter(plot_type == "Control" | plot_type == "Long term Krat Exclosure") %>% filter(!is.na(weight))
 ```
 
+
+
+

@@ -1,0 +1,24 @@
+---
+title: "If-else conditions"
+author: "Austin Mercado"
+date: "2023-03-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Logical and conditional statements
+
+These are pieces of code that reutnr the 'TRUE' or 'FALSE' values, that is, a logical value. 
+
+THe common operators of logical statements are:
+- equality '=='
+- inequality '!='
+- greater than '>'
+- less than '<'
+- greater or equal than '>='
+- less or equal than '<='
+
+
