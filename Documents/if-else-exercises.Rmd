@@ -21,4 +21,90 @@ THe common operators of logical statements are:
 - greater or equal than '>='
 - less or equal than '<='
 
+The conditional statements allow to test several logical conditions at a time 
+THe condition operators (or symbols) are
+- AND '&' (inside dplyr function we can also represnt and using a ',')
+- OR '|'
 
+We also have logical functions that test if something is 'TRUE' or 'FALSE', for example:
+- 'is.na()' is a function that exists if a value is an 'NA'
+- This function is part of a whole family of functions, they all start with 'is.':
+- is.vector()
+- is.data.frame()
+- is.factor()
+
+For next class: how to get all functions from a family (method)
+
+- which(): takes logical vectors, it will give you the numerical index (position) of all values that are TRUE
+
+```{r}
+which(letters == "r")
+```
+
+```{r}
+w <- 10.2
+x <- 1.3
+y <- 2.8
+z <- 17.5
+colors <- c("red", "blue", "green")
+masses <- c(45.2, 36.1, 27.8, 81.6, 42.4)
+dna1 <- "attattaggaccaca"
+dna2 <- "attattaggaacaca"
+```
+
+```{r}
+w < 10
+colors == "green"
+x > y
+masses > 40
+2 * x + 0.2 == y
+dna1 = dna2
+dna1 != dna2
+w > x | y > z
+x*w == 13.2:13.5
+masses == 30:50
+```
+
+```{r}
+x * w < 13.5
+x * w > 13.2
+# 13.2 < x * w < 13.5. This is how we do it in paper
+# But in R we have to compare things in pairs:
+# For this we use the condtional statements
+x * w < 13.5 & x * w > 13.2
+```
+
+## How to make simple choices with 'if()'
+
+The general structure of an if statement:
+
+```
+if (condition is TRUE) {Run all lines of code in this block of code}
+```
+
+If the condition is not TRUE, then nothing happens.
+
+```{r}
+age_class = "sampling" 
+if (age_class == "sampling") {
+  y <- 10
+} 
+ y
+```
+
+```{r}
+age_class = "seedling" 
+if (age_class == "seedling") {
+  y <- 10
+} 
+ y
+```
+
+## Handle more than 2 choices
+
+In this case we are using the else if structure:
+```
+if (conditional) {first block code that is execites if condition 1 is met} else if (condition2) {second block code the executes if condition2 is met} else if (condition3) {more code} else {this will cover all the conditions that are not specified before}
+```
+
+You do not have to end up with and else block. 'Else if' are more intention the conditions. A simple else will run in all other cases no matter what. 
