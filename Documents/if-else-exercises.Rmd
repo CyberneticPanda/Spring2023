@@ -108,3 +108,14 @@ if (conditional) {first block code that is execites if condition 1 is met} else 
 ```
 
 You do not have to end up with and else block. 'Else if' are more intention the conditions. A simple else will run in all other cases no matter what. 
+
+```{r}
+if(age_class == "sapling") {
+  y <- 10
+}
+if(age_class == "seedling") {
+  y <- 5
+}else if(age_class ==  "sampling") { y <- 10
+} else {y <- 0}
+y
+```
