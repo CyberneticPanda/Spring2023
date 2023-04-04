@@ -28,17 +28,6 @@ get_mass_from_length_theropoda <- function(length, a, b)
 return(mass)}
 ```
 
-#Error
-get_mass_from_length_theropoda <- function(mass)
-{mass <- a * length ^ b
-return(mass)}
-
-#Error
-a = 214.44
-b = 1.46
-length <- 26
-get_mass_from_length_theropoda()
-
 ```{r} 
 get_mass_from_length_theropoda(length = 26, a =214.44, b = 1.46)
 ```
@@ -68,7 +57,7 @@ convert_kg_to_pounds(kg = get_mass_from_length_theropoda(a = 10.95, b = 2.64, le
 ```
 
 ```{r}
-length_in_pounds <- function(length, a, b){get_mass_from_length(length = length, a = a, b = b) %>% convert_kg_to_pounds()}
+length_in_pounds <- function(length, a, b){get_mass_from_length(length = 1, a = 1, b = 1) %>% convert_kg_to_pounds()}
 ```
 
 ```{r}
@@ -105,6 +94,11 @@ return(mass)}
 ```
 
 ```{r}
+new_masses <- mass_from_length(length = theropoda_lengths)
+```
+
+
+```{r}
 theropoda_lengths <- c(17.8013631070471, 20.3764452071665, 14.0743486294308, 25.65782386974, 26.0952008049675, 20.3111541103134, 17.5663244372533, 11.2563431277577, 20.081903202614, 18.6071626441984, 18.0991894513166, 23.0659685685892, 20.5798853467837, 25.6179254233558, 24.3714331573996, 26.2847248252537, 25.4753783544473, 20.4642089867304, 16.0738256364701, 20.3494171706583, 19.854399305869, 17.7889814608919, 14.8016421998303, 19.6840911485379, 19.4685885050906, 24.4807784966691, 13.3359960054899, 21.5065994598917, 18.4640304608411, 19.5861532398676, 27.084751999756, 18.9609366301798, 22.4829168046521, 11.7325716149514, 18.3758846100456, 15.537504851634, 13.4848751773738, 7.68561192214935, 25.5963348603783, 16.588285389794)
 ```
 
@@ -115,14 +109,12 @@ mass_from_length_theropoda(length = theropoda_lengths)
 ```{r}
 theropoda_masses <- mass_from_length_theropoda(length = theropoda_lengths)
 
-list(theropoda_masses)
-```
+my_list <- list(theropoda_masses)
+second_list <- c(my_list, list(c("Luna", "Avi", "Anita")))
 
+second_list[1]
 
-```{r}
-mass_from_length <- function(length, a, b)
-{mass <- a * length^b
-return(mass)}
+data.frame(theropoda_masses, c("Anita", "Avi", "Luna", "Maria"))
 ```
 
 ```{r}
@@ -135,6 +127,20 @@ b_values <- c(3.627, 3.633, 3.626, 3.633, 3.627, 3.629, 3.632, 3.628, 3.633, 3.6
 
 ```{r}
 dino_data <- data.frame(theropoda_lengths, a_values, b_values)
+head(dino_data)
+```
+
+'<<-' the scope operator or double arrow, allows creating and modifying objects in parent variables
+
+```{r}
+mass_from_length_max <- function(length) {
+  if (length < 20) {
+    mass <- 0.73 * length^3.63
+    return(mass)
+  } else {
+    return(NA)
+  }
+}
 ```
 
 ```{r}
@@ -160,18 +166,3 @@ It probably also returns a vector or simplified data structure as result.
 ```{r}
 sapply(dino_data, mass_from_length_max, ) #??
 ```
-
-```{r}
-get_mass_from_length_by_name <- function(length = "mass"
-if (length == "20"), a, b, )
-{mass <- a * length^b
-return(mass)}
-```
-
-```{r}
-length = "mass" 
-if (length == "mass") {
-  y <- 20
-} 
- y
-```{r}
