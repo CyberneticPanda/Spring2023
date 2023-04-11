@@ -208,3 +208,16 @@ dino_table %>%
 ```{r}
 library(ggplot2)
 ```
+
+```{r, error = TRUE} 
+# ????
+dino_names <- c("Sauropoda", "Stegosauria", "Theropoda")
+a_values <- c(214.44, 10.95, 0.73, 25.37)
+b_values <- c(1.46, 2.64, 3.63, 2.49)
+dino_masses <- vector(mode = "numeric", length = length(dino_names))
+for (i in 1:length(dino_names)){
+  dino_masses[i] <- a[i] * length[i]^b[i]
+}
+dino_masses
+```
+
