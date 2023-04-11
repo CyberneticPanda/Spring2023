@@ -209,15 +209,50 @@ dino_table %>%
 library(ggplot2)
 ```
 
-```{r, error = TRUE} 
-# ????
-dino_names <- c("Sauropoda", "Stegosauria", "Theropoda")
-a_values <- c(214.44, 10.95, 0.73, 25.37)
-b_values <- c(1.46, 2.64, 3.63, 2.49)
-dino_masses <- vector(mode = "numeric", length = length(dino_names))
-for (i in 1:length(dino_names)){
-  dino_masses[i] <- a[i] * length[i]^b[i]
+
+```{r}
+dino_data <- read.csv(file = "../data-raw/dinosaur_lengths.csv")
+head(dino_lengths)
+```
+
+```{r}
+mass_from_length <- function(dino_data, dino_species) {
+  if (dino_species == "Stegosauria") {
+    a <- 10.95
+    b <- 2.64
+  } else if (dino_species == "Theropoda") {
+    a <- 0.73
+    b <- 3.63
+  } else if (dino_species == "Sauropoda") {
+    a <- 214.44
+    b <- 1.46
+  } else {
+    a <- 25.37
+    b <- 2.49
+  }
+  mass <- a * dino_data^b
+  return(mass)
 }
-dino_masses
+```
+
+```{r}
+my_results <- vector(mode = "numeric", length = nrow(dino_data))
+for (i in 1:nrow(dino_data)) {
+    mass_i <- mass_from_length(dino_data = dino_data$lengths[i], dino_species = dino_data$species[i])
+    print(mass_i)
+    my_results[i] <- mass_i
+}
+
+head(my_results)
+```
+
+```{r}
+dino_data$masses <- my_results
+head(dino_data)
+```
+
+```{r}
+library(dplyr)
+dino_data %>% group_by(species) %>% summarise(mean_mass = mean(masses))
 ```
 
