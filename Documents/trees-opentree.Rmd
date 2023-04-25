@@ -1,0 +1,124 @@
+---
+title: "trees-opentree"
+author: "Austin Mercado"
+date: "2023-04-20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("ape")
+install.packages("rotl")
+```
+Insect - ~1 million named species
+Mammals - ~5 thousands species 
+Flowering plants - ~200K named species
+
+```{r}
+library("ape") # Analysis, Phylogenetics and Evolution R Package
+library("rotl") #
+library("nlme")
+```
+
+### Read a newick tree from the Open Tree of Life 
+
+The following function can only read trees in newick format. Make sure your file is a newick tree. If you got your tree from the Phylesystem repo, your tree is going to be in json format
+
+```{r}
+tree <- read.tree(file = "../data-raw/subtree-node-ott247341-Canis-lupus.tre")
+```
+
+```{r, fig.height = 10, fig.width=5}
+plot(tree, cex = 0.5)
+mtext(text = "Canis Lupus OpenTree tree")
+```
+
+We can also use the url of a tree to read a tree into R. We will provie the eURL in the argument 'file ='.
+In this case, we do not have to keep a copy of the file, we can just download it directly
+The url is txt <- "http://ape-package.ird.fr/APER/APER2/primfive.tre":
+
+```{r}
+small_tree <- read.tree(file = "http://ape-package.ird.fr/APER/APER2/primfive.tre")
+```
+
+The R structure of a phylogenetic tree
+
+### Getting a tree for your species from the Open Tree of Life
+
+The Open Tree of Life has tools that allow to match the names of a group or species to their unified taxonomy so that we can look for information on their databases. 
+
+If we are doing this in R, we are using the 'tnrs_match_names()' from the package 'rotl': tnrs stands for taxonmic name resolution service:
+
+```{r}
+tnrs <- tnrs_match_names(names = "amphibia")
+class(tnrs)
+tnrs
+```
+
+```{r}
+tol_subtree(ott_id = tnrs$ott_id) -> amp_tree
+```
+
+
+The function above ran the TNRS service to match the common name that I provided to the Open Tree of Life Taxonomy (OTT) and get a unique numeric identifier called the OTT id.
+For dolphins this is the number 'r tnrs_dolphins$ott_id'.
+The next step is to use the OTT id in the function that gets a subtree from OpenTree:
+
+```{r}
+str(amp_tree)
+class(amp_tree)
+```
+
+```{r}
+plot.phylo(x = amp_tree,  cex = 200)
+```
+### Getting a tree for a set of taxa
+
+Sometime we have very large groups and we just want to get a small tree representing some lineages inside the group. 
+
+For example, we jsut want a tree of all orders in amphibians. We know the common names of these which are frogs, salamanders, and cecilians. 
+
+We want to find this lineages in the Open Tree of Life; the steps to do this are:
+
+1. Get the scientific names of our taxa 
+
+```{r}
+c("anura", "urodela", "gymophiona") -> amphibian_orders
+```
+
+2. Match the scientific names to the OTT to get a unique numeric identifier
+
+```{r}
+tnrs_match_names(names = amphibian_orders) -> amph_order_tnrs
+amph_order_tnrs
+```
+
+We have two columns at the beginning, search string contains the names that we provided, and unique_name contains the most updated or official or most commonly used taxonomic names for the search taxon that we provided.
+
+3. Next stp is to use the OTT ids that we got to extract the tree containing those lineages.
+If we have only one name or lineage, we can use 'tol_subtree()'.
+If we have more than one names, we will use 'tol_induced_subtree()'.
+
+```{r}
+tol_induced_subtree(ott_ids = amph_order_tnrs$ott_id) -> amp_order_tree
+amp_order_tree
+```
+
+```{r}
+plot.phylo(x = amp_order_tree)
+```
+
+What is the main difference between the information that we have in the column 'search_string' and 'unique_name':
+One is the search string and the other is the scientific taxonomic name from the Open Tree of Life unified Taxonomy(OTT).
+
+We can use the unique number identifier from OTT to get information from that taxon.
+
+To get a tree we can use the function 'tol_subtree()'
+
+```{r}
+tol_subtree(ott_id = tnrs$ott_id)
+```
+
