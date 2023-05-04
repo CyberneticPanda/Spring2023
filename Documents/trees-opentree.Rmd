@@ -122,3 +122,55 @@ To get a tree we can use the function 'tol_subtree()'
 tol_subtree(ott_id = tnrs$ott_id)
 ```
 
+### Getting a tree of all families within amphibians 
+
+Install the 'datalife' R package from GitHub, with a function from the package 'remotes': 
+```{r}
+##install.packages(remotes)
+library(remotes) # or install.packages("remotes")
+install_github(repo = "phylotastic/datelife")
+```
+
+Now we can use the 'datalife' package, but we have to load it first
+```{r}
+library(datelife)
+```
+
+We are going to use a function that extracs all the names from a taxon that belond to a given named rank. The function is called 'get_ott_children()':
+
+```{r}
+get_ott_children(ott_ids = tnrs$ott_id, ott_rank = "family") -> amphibian_familes
+amphibian_familes
+```
+
+Use the ott ids for all familes to get an induced subtree:
+
+```{r}
+tol_induced_subtree(ott_ids = amphibian_familes$Amphibia$ott_id) -> amp_fam_subtree
+amp_fam_subtree
+```
+
+```{r, fig.height=20}
+plot.phylo(amp_fam_subtree)
+```
+
+```{r}
+doggo <- tnrs <- tnrs_match_names(names = "Canis Lupus")
+class(doggo)
+doggo
+```
+```{r}
+tol_subtree(ott_id = doggo$ott_id) -> doggo_ott_id
+```
+
+```{r}
+plot.phylo(doggo_ott_id)
+```
+
+Homework:
+
+1. Extract the names of the taxa from your data set for the final project.
+2. Match them to the OTT using TNRS with the function 'tnrs_match_names()'
+3. Use the OTT ids to get an induced subtree.
+
+

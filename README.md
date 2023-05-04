@@ -1,4 +1,8 @@
-# Spring 2023 Workplace
-## Documents contains most of in-class activities and homeworks
-1. There is by chance documents within Bio repository due to misplacing them. 
-2. All raw data is located in raw-data folder
+
+# Spring2023
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of Spring2023 is to enhance one's fluency with R.
+
