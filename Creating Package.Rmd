@@ -156,7 +156,13 @@ We will use the 'pkgdown' package
 But first we need to activate the use of pkgdown in our repository with 'use_pkgdown()' from the package 'usethis':
 
 ```{r, eval = FALSE}
+install.packages("pkgdown")
 library(usethis)
 use_pkgdown()
 ```
+
+```{r}
+build_site()
+```
+
 
