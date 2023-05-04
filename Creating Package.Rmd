@@ -165,4 +165,10 @@ use_pkgdown()
 build_site()
 ```
 
+## Customize the website 
+
+## Adding vigenettes to our packages
+
+Vignettes are Rmd files that have information on how to use the package.
+To create 
 
